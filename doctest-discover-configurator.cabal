@@ -1,7 +1,7 @@
 name:                doctest-discover-configurator
 version:             0.1.0.6
 synopsis:            Easy way to run doctests via cabal (no aeson dependency, uses configurator instead)
-description:         doctest-discover provides an easy way to run doctests via cabal
+description:         doctest-discover provides an easy way to run doctests via cabal (uses configurator instead of aeson)
 license:             PublicDomain
 license-file:        LICENSE
 homepage:            http://github.com/relrod/doctest-discover-noaeson
