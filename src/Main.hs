@@ -1,7 +1,7 @@
 module Main where
 
 import System.Environment
-import Control.Applicative 
+import Control.Applicative
 import Control.Monad
 import Data.Maybe (fromMaybe)
 import Runner
@@ -12,10 +12,9 @@ import System.FilePath
 main :: IO ()
 main = do
     (src : _ : dst : args) <- getArgs
-    let configFileContents = case args of
-                              (configFile : _) -> readFile configFile
-                              _ -> return ""
-    customConfiguration <- config <$> configFileContents
+    customConfiguration <- case args of
+                            (configFile : _) -> Just <$> config configFile
+                            _ -> return Nothing
     let sources = case customConfiguration of
                     Just (Config _ (Just sourceFolders)) -> sourceFolders
                     _ -> ["src"]
@@ -25,10 +24,3 @@ main = do
 
 getAbsDirectoryContents :: FilePath -> IO [FilePath]
 getAbsDirectoryContents dir = getDirectoryContents dir >>= mapM (canonicalizePath . (dir </>))
-
-
-
-
-
-
-
